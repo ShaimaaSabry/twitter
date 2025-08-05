@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: local
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  jwt:
+    secretKey: doIG9JFetXagsXuCgwezqDh/bzbObcuhR5qNVLtHQHc=

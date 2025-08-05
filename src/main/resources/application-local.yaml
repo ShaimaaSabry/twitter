@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    initializationMode: always
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:4444/twitter
+    username: postgres
+    password: postgres
+  data:
+    elasticsearch:
+      cluster-nodes: localhost:9200
+      repositories:
+        enabled: true
+
+logging:
+  level:
+    shaimaa.twitter: DEBUG
