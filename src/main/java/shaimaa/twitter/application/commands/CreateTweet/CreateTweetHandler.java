@@ -1,22 +1,22 @@
 package shaimaa.twitter.application.commands.CreateTweet;
 
-import org.springframework.context.annotation.Lazy;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
-import shaimaa.twitter.application.eventHandlers.TweetCreatedHandler;
+import shaimaa.twitter.domain.events.TweetCreatedEvent;
 import shaimaa.twitter.domain.model.Tweet;
 import shaimaa.twitter.domain.contracts.TweetRepository;
 
 @Component
 public class CreateTweetHandler {
     private final TweetRepository tweetRepository;
-    private final TweetCreatedHandler tweetCreatedHandler;
+    private final ApplicationEventPublisher eventPublisher;
 
     CreateTweetHandler(
             TweetRepository tweetRepository,
-            TweetCreatedHandler tweetCreatedHandler
+            ApplicationEventPublisher eventPublisher
     ) {
         this.tweetRepository = tweetRepository;
-        this.tweetCreatedHandler = tweetCreatedHandler;
+        this.eventPublisher = eventPublisher;
     }
 
     public Tweet handle(CreateTweetCommand command) {
@@ -27,7 +27,7 @@ public class CreateTweetHandler {
 
         tweet = this.tweetRepository.create(tweet);
 
-        this.tweetCreatedHandler.handle(tweet);
+        this.eventPublisher.publishEvent(new TweetCreatedEvent(tweet));
 
         return tweet;
     }

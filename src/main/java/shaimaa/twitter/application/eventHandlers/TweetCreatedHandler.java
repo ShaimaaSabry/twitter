@@ -2,7 +2,11 @@ package shaimaa.twitter.application.eventHandlers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionPhase;
+import org.springframework.transaction.event.TransactionalEventListener;
+import shaimaa.twitter.domain.events.TweetCreatedEvent;
 import shaimaa.twitter.domain.model.Tweet;
 import shaimaa.twitter.domain.model.User;
 import shaimaa.twitter.domain.contracts.TweetRepository;
@@ -26,7 +30,11 @@ public class TweetCreatedHandler {
         this.tweetRepository = tweetRepository;
     }
 
-    public void handle(Tweet tweet) {
+    @Async
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, fallbackExecution = true)
+    public void handle(TweetCreatedEvent event) {
+        Tweet tweet = event.tweet();
+
         LOGGER.debug(
                 "Handling tweet created event for tweet: {}",
                 tweet
