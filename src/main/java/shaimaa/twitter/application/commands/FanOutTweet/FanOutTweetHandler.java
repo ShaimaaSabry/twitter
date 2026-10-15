@@ -1,12 +1,8 @@
-package shaimaa.twitter.application.eventHandlers;
+package shaimaa.twitter.application.commands.FanOutTweet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.event.TransactionPhase;
-import org.springframework.transaction.event.TransactionalEventListener;
-import shaimaa.twitter.domain.events.TweetCreatedEvent;
 import shaimaa.twitter.domain.model.Tweet;
 import shaimaa.twitter.domain.model.User;
 import shaimaa.twitter.domain.contracts.TweetRepository;
@@ -15,28 +11,25 @@ import shaimaa.twitter.domain.contracts.UserRepository;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 @Component
-public class TweetCreatedHandler {
+public class FanOutTweetHandler {
     private static final int TIMELINE_LIMIT = 5;
-    private static final Logger LOGGER = LoggerFactory.getLogger(TweetCreatedHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FanOutTweetHandler.class);
 
     private final UserRepository userRepository;
     private final TweetRepository tweetRepository;
 
-    TweetCreatedHandler(UserRepository userRepository, TweetRepository tweetRepository) {
+    FanOutTweetHandler(UserRepository userRepository, TweetRepository tweetRepository) {
         this.userRepository = userRepository;
         this.tweetRepository = tweetRepository;
     }
 
-    @Async
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, fallbackExecution = true)
-    public void handle(TweetCreatedEvent event) {
-        Tweet tweet = event.tweet();
+    public void handle(FanOutTweetCommand command) {
+        Tweet tweet = command.tweet();
 
         LOGGER.debug(
-                "Handling tweet created event for tweet: {}",
+                "Fanning out tweet to followers' timelines: {}",
                 tweet
         );
 
