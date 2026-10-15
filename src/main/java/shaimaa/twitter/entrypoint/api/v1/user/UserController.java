@@ -1,4 +1,4 @@
-package shaimaa.twitter.presentation.api.v1.user;
+package shaimaa.twitter.entrypoint.api.v1.user;
 
 //import org.springframework.security.core.Authentication;
 import io.swagger.v3.oas.annotations.tags.Tag;

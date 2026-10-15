@@ -1,4 +1,4 @@
-//package shaimaa.twitter.presentation.api.security;
+//package shaimaa.twitter.entrypoint.api.security;
 //
 //import io.jsonwebtoken.ExpiredJwtException;
 //import io.jsonwebtoken.MalformedJwtException;

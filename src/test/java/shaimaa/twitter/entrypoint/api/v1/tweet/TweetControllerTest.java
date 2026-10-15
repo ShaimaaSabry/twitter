@@ -1,4 +1,4 @@
-package shaimaa.twitter.presentation.api.v1.tweet;
+package shaimaa.twitter.entrypoint.api.v1.tweet;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

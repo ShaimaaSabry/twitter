@@ -1,4 +1,4 @@
-package shaimaa.twitter.presentation.api.v1.user;
+package shaimaa.twitter.entrypoint.api.v1.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

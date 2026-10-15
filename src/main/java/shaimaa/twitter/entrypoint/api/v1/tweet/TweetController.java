@@ -1,4 +1,4 @@
-package shaimaa.twitter.presentation.api.v1.tweet;
+package shaimaa.twitter.entrypoint.api.v1.tweet;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestHeader;

@@ -1,4 +1,4 @@
-//package shaimaa.twitter.presentation.api.security;
+//package shaimaa.twitter.entrypoint.api.security;
 //
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;

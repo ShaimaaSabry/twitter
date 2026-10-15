@@ -1,4 +1,4 @@
-package shaimaa.twitter.presentation.listeners;
+package shaimaa.twitter.entrypoint.listeners;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
